@@ -216,10 +216,9 @@ PackF = np.sum((np.pi)*rads**2)/((xmax-xmin)*(ymax-ymin))           # Packing fr
 plot_particles(Cs , 0)
 plot_graph(R_cnts, ed_list)
 
-ti = 0
-
-#%%
 ##################################################################### TIME LOOP ######################################################################
+
+ti = 0
 
 for tt in tseries:
 
@@ -261,13 +260,13 @@ for tt in tseries:
     dCdt = 0
     if signaling:
         if mechanism == 'Fisher':
-            dCdt  = -nu*Bs.T.dot(Bs.dot(Cs)) + kappa*Cs*(1-Cs)**1     # FISHER equation.
-        else:     dCdt  = - nu*(1-Cs)*C_prop.dot(Cs) - kappa*Cs*(1)
+            dCdt  = -nu*Bs.T.dot(Bs.dot(Cs)) + kappa*Cs*(1-Cs)     # FISHER equation.
+        else:     dCdt  = - nu*(1-Cs)*C_prop.dot(Cs) - kappa*Cs
 
     ax    = (Fax + Fpx + Fdx + noise_vx)/MM
     ay    = (Fay + Fpy + Fdy + noise_vy)/MM
-    xcnt += Vx*dt + (ax * dt**2) /2
-    ycnt += Vy*dt + (ay * dt**2) /2
+    xcnt += Vx*dt + (ax * dt**2)/2
+    ycnt += Vy*dt + (ay * dt**2)/2
     Vx   += ax * dt
     Vy   += ay * dt
     Cs   += dCdt * dt
